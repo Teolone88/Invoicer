@@ -28,35 +28,3 @@
     <?= $this->modal->submitButtons() ?>
 </form>
 <br><br>
-
-<?php
-// directory path can be either absolute or relative 
-$dirPath = __DIR__.'/../Temp/'; 
-
-foreach (glob($dirPath . "*.pdf") as $filename) {
-    $filename = basename($filename);
-    // do something with $filename
-	
-}
-
-?>
-<a href="invoice.php" onclick="this.innerHTML='Downloading..'; downloadPdf(this);">Download</a>
-<script>
-// javascript
-function download(filename){
-    window.location="https://whateveryoursiteis.com/download.php?file="+filename;
-}
-</script>
-<h1>PDF Viewer Previous/Next example</h1>
-<br><br>
-<div>
-  <button id="prev">Previous</button>
-  <button id="next">Next</button>
-  &nbsp; &nbsp;
-  <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
-</div>
-<br><br>
-<a href="invoice.php">Test.pdf</a>
-<canvas id="invoice"></canvas>
-<script src="//mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
-<?php
