@@ -26,18 +26,20 @@ class InvoiceModalController extends BaseController
 
     public function printProjectInvoice($project, $values)
     {
-        // instantiate and use t$options = new Options();
-        $options = new Options();
-        $options->set('isRemoteEnabled', 'true');
-        $options->set('defaultFont', 'DejaVu Sans');
-        $options->set('fontHeightRatio', '.9');
-        $options->set('isJavascriptEnabled', 'true');
-        set_time_limit(600);
-        $dompdf = new Dompdf();
+    
+    	$options = new Options();
+		$options->set('defaultFont', 'Helvetica');
+    	$options->set('defaultMediaType', 'all');
+		$options->set('isFontSubsettingEnabled', true);
+    	$options->set('isHtml5ParserEnabled', true);
+		$dompdf = new Dompdf($options);
         $dompdf->setBasePath('/var/www/app/data/');
     
-    	/*  $html_all = 'body { font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; text-align: center; color: #777; } body h1 { font-weight: 300; margin-bottom: 0px; padding-bottom: 0px; color: #000; } body h3 { font-weight: 300; margin-top: 10px; margin-bottom: 20px; font-style: italic; color: #555; } body a { color: #06f; } .invoice-box { max-width: 800px; margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); font-size: 16px; line-height: 24px; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color: #555; } .invoice-box table { width: 100%; line-height: inherit; text-align: left; border-collapse: collapse; } .invoice-box table td { padding: 5px; vertical-align: top; } .invoice-box table tr td:nth-child(2) { text-align: right; } .invoice-box table tr.top table td { padding-bottom: 20px; } .invoice-box table tr.top table td.title { font-size: 45px; line-height: 45px; color: #333; } .invoice-box table tr.information table td { padding-bottom: 40px; } .invoice-box table tr.heading td { background: #eee; border-bottom: 1px solid #ddd; font-weight: bold; } .invoice-box table tr.details td { padding-bottom: 20px; } .invoice-box table tr.item td { border-bottom: 1px solid #eee; } .invoice-box table tr.item.last td { border-bottom: none; } .invoice-box table tr.total td:nth-child(2) { border-top: 2px solid #eee; font-weight: bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td { width: 100%; display: block; text-align: center; } .invoice-box table tr.information table td { width: 100%; display: block; text-align: center; } }'; */
-    	
+    	/* $html_all = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body { font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; text-align: center; color: #777; } body h1 { font-weight: 300; margin-bottom: 0px; padding-bottom: 0px; color: #000; } body h3 { font-weight: 300; margin-top: 10px; margin-bottom: 20px; font-style: italic; color: #555; } body a { color: #06f; } .invoice-box { max-width: 800px; margin: auto; padding: 30px; border: 1px solid #eee; box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); font-size: 16px; line-height: 24px; font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif; color: #555; } .invoice-box table { width: 100%; line-height: inherit; text-align: left; border-collapse: collapse; } .invoice-box table td { padding: 5px; vertical-align: top; } .invoice-box table tr td:nth-child(2) { text-align: right; } .invoice-box table tr.top table td { padding-bottom: 20px; } .invoice-box table tr.top table td.title { font-size: 45px; line-height: 45px; color: #333; } .invoice-box table tr.information table td { padding-bottom: 40px; } .invoice-box table tr.heading td { background: #eee; border-bottom: 1px solid #ddd; font-weight: bold; } .invoice-box table tr.details td { padding-bottom: 20px; } .invoice-box table tr.item td { border-bottom: 1px solid #eee; } .invoice-box table tr.item.last td { border-bottom: none; } .invoice-box table tr.total td:nth-child(2) { border-top: 2px solid #eee; font-weight: bold; } @media only screen and (max-width: 600px) { .invoice-box table tr.top table td { width: 100%; display: block; text-align: center; } .invoice-box table tr.information table td { width: 100%; display: block; text-align: center; } }</style><body>'; */
+		$html_style = '<style>body { font-size: 0.75rem; font-weight: 400; color: #000000; margin: 0 auto; position: relative; } #pspdfkit-header { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 400; color: #717885; margin-top: 1rem; margin-bottom: 1rem; width: 100%; } .header-columns { display: flex; justify-content: space-between; padding-left: 2.5rem; padding-right: 2.5rem; } .logo { height: 1.5rem; width: auto; margin-right: 1rem; } .logotype { display: flex; align-items: center; font-weight: 700; } h2 { font-size: 1.25rem; font-weight: 400; } h4 { font-size: 1rem; font-weight: 400; } .page { margin-left: 5rem; margin-right: 5rem; } .intro-table { display: flex; justify-content: space-between; margin: 2rem 0 2rem 0; border-top: 1px solid #000000; border-bottom: 1px solid #000000; } .intro-form { display: flex; flex-direction: column; border-right: 1px solid #000000; width: 50%; } .intro-table-title { font-size: 0.625rem; margin: 0; } .intro-form-item { padding: 1.25rem 1.5rem 1.25rem 1.5rem; } .intro-form-item:first-child { padding-left: 0; } .intro-form-item:last-child { padding-right: 0; } .intro-form-item-border { padding: 0.75rem 0 0.75rem 0.75rem; border-bottom: 1px solid #000000; } .intro-form-item-border:last-child { border-bottom: none; } .form { display: flex; flex-direction: column; margin-top: 1rem; } .no-border { border: none; } .border { border: 1px solid #000000; } input {border:0;outline:0;} input:focus {outline:none!important;} .border-bottom { border: 1px solid #000000; border-top: none; border-left: none; border-right: none; } .signer { display: flex; justify-content: space-between; gap: 2.5rem; margin: 1rem 0 1rem 0; } .signer-item { flex-grow: 1; } input { text-align: left; width: 100%; } textarea#notes { text-align: left; height: 4rem; border:0; outline:0; } input#signature { height: 1rem; border:0;outline:0; outline:none!important; } .intro-text { width: 60%; } .table-box table, .summary-box table { width: 100%; font-size: 0.625rem; } .table-box td:first-child { width: 10%; } .summary-box td:first-child { width: 50%; } .table-box td:last-child, .summary-box td:last-child { text-align: right; } .table-box table td { border-top: 1px solid #000000; border-bottom: 1px solid #000000; height: 1.5rem; } .table-box table tr.item td{ border-bottom: 1px solid #000000; height: 1.5rem; } .table-box table tr.item td, .summary-box table tr.item td { border-bottom: 1px solid #d7dce4; height: 1.5rem; } .summary-box table tr.no-border-item td { border-bottom: none; height: 1.5rem; } .summary-box table tr.total td { border-top: 1px solid #000000; border-bottom: 1px solid #000000; height: 1.5rem; } .summary-box table tr.item td:first-child, .summary-box table tr.total td:first-child { border: none; height: 1.5rem; } #pspdfkit-footer { font-size: 0.5rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: #717885; margin-top: 1rem; position: absolute; width: 100%; } .footer-columns { display: flex; justify-content: space-between; padding-left: 2.5rem; padding-right: 2.5rem; } .input#addRow { color: green; font-weight: bold; } .input#rm { color: red; font-weight: bold; }</style>';
+    	$html_all = '<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta http-equiv="Content-Security-Policy" content="font-src \'self\' data:;" />' . '<link rel="stylesheet" href="../../../css/invoice.css">';
+    	$script = '<script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/jspdf-html2canvas@latest/dist/jspdf-html2canvas.min.js"></script>';
+    	$layout = 'Invoicer:invoicelayout/invoicelayout';
         $status = array(TaskModel::STATUS_OPEN);
     	$task_ids = $this->db
         ->table(TaskModel::TABLE)
@@ -46,28 +48,32 @@ class InvoiceModalController extends BaseController
         ->asc(TaskModel::TABLE.'.id')
         ->findAllByColumn(TaskModel::TABLE.'.title');
     	$values['invAdd'] = array_intersect_key(array_values($task_ids), array_flip($values['invAdd']));
-    
-       	$html = $this->template->render('Invoicer:invoicelayout/invoice', array(
+    	// Turn on output buffering
+
+    	$html = $this->template->render($layout, array(
                 'project' =>  $project,
-        	'values'  => $values,
+        		'values'  => $values,
                 'no_layout' => true,
                 'auto_refresh' => true,
                 'not_editable' => true,
             ));
+    	
+    	ob_start();
+    	$html_all = $html_all . '<body>' . $html;
+    	ob_get_clean();
 
-    	/* $html_all = $html_all . $html . '<div style="page-break-after: always;"></div>';*/
-	/*$html_all = $html_all . '</body></html>';*/
-        $dompdf->loadHtml($html, 'UTF-8');
-		echo $html;
+        $dompdf->loadHtml($html_all);
+    	$dompdf->render();
+		/*echo $html_all;*/
+		/*file_put_contents(dirname(__DIR__, 3) . '/data/files/Invoicer/Invoice.html', $html_all);*/
         // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('a4', 'portrait');
-    	$dompdf->set_option('defaultMediaType', 'all');
-		$dompdf->set_option('isFontSubsettingEnabled', true);
-		ob_start();
+        $dompdf->setPaper('a4', 'landscape');
+
         // Render the HTML as PDF
         $dompdf->render();
+    	$output = $dompdf->output();
         // Output the generated PDF to Browser inline or as PDF download
-        $dompdf->stream($project['id'] . '_' . $project['name'] . '.pdf');
+         $dompdf->stream($project['id'] . '_' . $project['name'] . '.pdf', array("Attachment" => false)); 
     	exit();
     }
 
