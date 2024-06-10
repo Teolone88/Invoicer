@@ -26,7 +26,7 @@ class Plugin extends Base
         $this->template->hook->attach('template:config:application', 'Invoicer:config/invoiceConfig');
         // PROJECT DROPDOWN BUTTON
         $this->template->hook->attach('template:project:dropdown', 'Invoicer:project_header/buttonInvoice');
-    	$this->template->hook->attach('template:task:sidebar:information', 'Invoicer:invoice');
+    	//$this->template->hook->attach('template:task:sidebar:information', 'Invoicer:invoice');
         // HELPER
         //$this->helper->register('invoicerHelper', '\Kanboard\Plugin\Invoicer\Helper\invoicerHelper');
     }
