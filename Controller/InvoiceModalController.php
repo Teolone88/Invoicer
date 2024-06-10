@@ -49,19 +49,14 @@ class InvoiceModalController extends BaseController
     
        	$html = $this->template->render('Invoicer:invoicelayout/invoice', array(
                 'project' =>  $project,
-        		'values'  => $values,
+        	'values'  => $values,
                 'no_layout' => true,
                 'auto_refresh' => true,
                 'not_editable' => true,
             ));
-    	
-    
-    	ob_start();
-		$html = ob_get_contents();
-		ob_end_clean();
 
     	/* $html_all = $html_all . $html . '<div style="page-break-after: always;"></div>';*/
-		/*$html_all = $html_all . '</body></html>';*/
+	/*$html_all = $html_all . '</body></html>';*/
         $dompdf->loadHtml($html, 'UTF-8');
 		echo $html;
         // (Optional) Setup the paper size and orientation
