@@ -28,3 +28,4 @@
     <?= $this->modal->submitButtons() ?>
 </form>
 <br><br>
+<?php
