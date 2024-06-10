@@ -18,11 +18,11 @@ class Plugin extends Base
         $this->hook->on('template:layout:css', array('template' => 'plugins/Invoicer/Assets/css/invoicestyle.css'));
         // JS - Asset Hook
         //  - Keep filename lowercase
-        //$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/invoice.js'));
-    	//$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/jsPDF_script.js'));
-    	//$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/jspdf.umd.min.js'));
-    	//$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/html2canvas.min.js'));
-    	//$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/jspdf-html2canvas.min.js'));
+        $this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/invoice.js'));
+    	$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/jsPDF_script.js'));
+    	$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/jspdf.umd.min.js'));
+    	$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/html2canvas.min.js'));
+    	$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/jspdf-html2canvas.min.js'));
         // SETTINGS APPLICATION
         $this->template->hook->attach('template:config:application', 'Invoicer:config/invoiceConfig');
         // PROJECT DROPDOWN BUTTON
