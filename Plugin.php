@@ -21,7 +21,7 @@ class Plugin extends Base
 
         // JS - Asset Hook
         //  - Keep filename lowercase
-        $this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/invoicer-support.js'));
+        //$this->hook->on('template:layout:js', array('template' => 'plugins/Invoicer/Assets/js/invoicer-support.js'));
         // SETTINGS APPLICATION
         $this->template->hook->attach('template:config:application', 'Invoicer:config/invoiceConfig');
         // PROJECT DROPDOWN BUTTON
